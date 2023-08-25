@@ -45,7 +45,7 @@ rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 
 VALIDATE $? "remove the directory"
 
-curl -o /tmp/web.zip https://roboshop-artifacts.s3.amazonaws.com/web.zip &>>$LOGFILE
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>$LOGFILE
 
 VALIDATE $? "zip"
 
@@ -53,7 +53,7 @@ cd /usr/share/nginx/html &>>$LOGFILE
 
 VALIDATE $? "change directory"
 
-unzip -o /tmp/web.zip &>>$LOGFILE
+unzip -o /tmp/frontend.zip &>>$LOGFILE
 
 VALIDATE $? "unzip"
 
