@@ -28,15 +28,15 @@ VALIDATE(){
    fi 
 }
 
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $LOGFILE
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$LOGFILE
 
 VALIDATE $? "rmp setup"
 
-yum install nodejs -y &>> $LOGFILE
+yum install nodejs -y &>>$LOGFILE
 
 VALIDATE $? "installing nodejs"
 
-useradd roboshop &>> $LOGFILE
+useradd roboshop &>>$LOGFILE
 
 USER_ROBOSHOP=$(id roboshop)
 if [ $? -ne 0 ];
@@ -49,7 +49,7 @@ else
 
 VALIDATE $? "adding user"
 
-mkdir /app &>> $LOGFILE
+mkdir /app &>>$LOGFILE
 
 VALIDATE_APP_DIR=$(cd /app)
 if [ $? -ne 0 ];
@@ -62,47 +62,47 @@ else
 
 VALIDATE $? "creating directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>$LOGFILE
 
 VALIDATE $? "zip"
 
-cd /app &>> $LOGFILE
+cd /app &>>$LOGFILE
 
 VALIDATE $? "change dir"
 
-unzip /tmp/catalogue.zip &>> $LOGFILE
+unzip /tmp/catalogue.zip &>>$LOGFILE
 
 VALIDATE $? "unzip"
 
-npm install  &>> $LOGFILE
+npm install  &>>$LOGFILE
 
 VALIDATE $? "install npm"
 
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>>$LOGFILE
 
 VALIDATE $? "copying catalog.service"
 
-systemctl daemon-reload &>> $LOGFILE
+systemctl daemon-reload &>>$LOGFILE
 
 VALIDATE $? "daemon reload"
 
-systemctl enable catalogue &>> $LOGFILE
+systemctl enable catalogue &>>$LOGFILE
 
 VALIDATE $? "enabling catalogue"
 
-systemctl start catalogue &>> $LOGFILE
+systemctl start catalogue &>>$LOGFILE
 
 VALIDATE $? "starting catalogue"
 
-cp /home/centos/roboshop-shell /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp /home/centos/roboshop-shell /etc/yum.repos.d/mongo.repo &>>$LOGFILE
 
 VALIDATE $? "mongo.repo"
 
-yum install mongodb-org-shell -y &>> $LOGFILE
+yum install mongodb-org-shell -y &>>$LOGFILE
 
 VALIDATE $? "installing mongo client"
 
-mongo --host mongodb.join-devops.online </app/schema/catalogue.js &>> $LOGFILE
+mongo --host mongodb.join-devops.online </app/schema/catalogue.js &>>$LOGFILE
 
 VALIDATE $? "loading the data"
 
