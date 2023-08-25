@@ -57,7 +57,7 @@ unzip -o /tmp/frontend.zip &>>$LOGFILE
 
 VALIDATE $? "unzip"
 
-cp home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf  &>>$LOGFILE
+cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf  &>>$LOGFILE
 
 VALIDATE $? "copied roboshop.conf"
 
