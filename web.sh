@@ -53,7 +53,7 @@ cd /usr/share/nginx/html &>>$LOGFILE
 
 VALIDATE $? "change directory"
 
-unzip /tmp/web.zip &>>$LOGFILE
+unzip -o /tmp/web.zip &>>$LOGFILE
 
 VALIDATE $? "unzip"
 
