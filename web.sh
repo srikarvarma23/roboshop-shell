@@ -45,7 +45,7 @@ rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 
 VALIDATE $? "remove the directory"
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>>$LOGFILE
+curl -o /tmp/web.zip https://roboshop-artifacts.s3.amazonaws.com/web.zip &>>$LOGFILE
 
 VALIDATE $? "zip"
 
