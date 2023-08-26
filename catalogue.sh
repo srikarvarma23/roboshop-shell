@@ -1,3 +1,4 @@
+#!/bin/bash
 LOGSDIR=/tmp
 
 DATE=$(date +%F)
@@ -21,10 +22,10 @@ VALIDATE(){
  
  if [ $1 -ne 0 ]
  then 
-  echo -e  " $R  $2 failure $N"
+  echo -e  " $R  $2 ..... failure $N"
   exit 1
   else 
-   echo -e " $G  $2 success $N"
+   echo -e " $G  $2 ..... success $N"
    fi 
 }
 
@@ -38,27 +39,13 @@ VALIDATE $? "installing nodejs"
 
 useradd roboshop &>>$LOGFILE
 
-USER_ROBOSHOP=$(id roboshop)
-if [ $? -ne 0 ];
-then
-    echo -e "$Y...USER roboshop is not present so creating now..$N"
-    useradd roboshop &>>$LOGFILE
-else
-    echo -e "$G...USER roboshop is already present so skipping now.$N"
- fi
+
 
 VALIDATE $? "adding user"
 
 mkdir /app &>>$LOGFILE
 
-VALIDATE_APP_DIR=$(cd /app)
-if [ $? -ne 0 ];
-then
-    echo -e " $Y /app directory not there so creating now $N"
-    mkdir /app &>>$LOGFILE  
-else
-    echo -e "$G /app directory already present so skipping now $N"
-    fi
+
 
 VALIDATE $? "creating directory"
 
