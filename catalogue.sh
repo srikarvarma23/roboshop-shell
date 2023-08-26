@@ -61,11 +61,10 @@ VALIDATE $? "installing nodejs"
 
 #VALIDATE $? "adding user"
 
-mkdir /app &>>$LOGFILE
+#mkdir /app &>>$LOGFILE
 
 
-
-VALIDATE $? "creating directory"
+#VALIDATE $? "creating directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>$LOGFILE
 
