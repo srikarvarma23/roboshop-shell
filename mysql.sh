@@ -54,7 +54,5 @@ mysql_secure_installation --set-root-pass RoboShop@1 &>>$LOGFILE
 
 VALIDATE $? "user & pass"
 
-mysql -uroot -pRoboShop@1 &>>$LOGFILE
 
-VALIDATE $? "hello"
 
