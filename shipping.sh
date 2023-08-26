@@ -101,7 +101,7 @@ VALIDATE $? "installing mysql"
 
 mysql -h mysql.join-devops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
-VALIDATE $? "loading countries"
+VALIDATE $? "loading all countries"
 
 systemctl restart shipping &>>$LOGFILE
 
