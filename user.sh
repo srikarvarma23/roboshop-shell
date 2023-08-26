@@ -39,13 +39,27 @@ VALIDATE $? "installing nodejs"
 
 useradd roboshop &>>$LOGFILE
 
-
+USER_CHECK=$(id roboshop)
+if [ $? -ne 0 ];
+then
+    echo -e "$Y...USER roboshop is not present so creating now..$N"
+    useradd roboshop &>>$LOGFILE
+else
+    echo -e "$G...USER roboshop is already present so skipping now.$N"
+ fi
 
 VALIDATE $? "adding user"
 
 mkdir /app &>>$LOGFILE
 
-
+APP_DIR=$(cd /app)
+if [ $? -ne 0 ];
+then
+    echo -e " $Y /app directory not there so creating now $N"
+    mkdir /app &>>$LOGFILE  
+else
+    echo -e "$G /app directory already present so skipping now $N"
+    fi
 
 
 VALIDATE $? "creating directory"
