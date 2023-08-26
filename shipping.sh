@@ -79,7 +79,7 @@ mv target/shipping-1.0.jar shipping.jar &>>$LOGFILE
 
 VALIDATE $? "moving jar file"
 
- cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>>$LOGFILE
+cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service &>>$LOGFILE
 
  VALIDATE $? "copying shipping serivce"
 
@@ -99,11 +99,11 @@ yum install mysql -y  &>>$LOGFILE
 
 VALIDATE $? "installing mysql"
 
-mysql -h mysql.join-devops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>$LOGFILE
-
-VALIDATE $? "root pswd"
-
 systemctl restart shipping &>>$LOGFILE
 
 VALIDATE $? "restart shipping"
+
+
+
+
 
