@@ -99,6 +99,10 @@ yum install mysql -y  &>>$LOGFILE
 
 VALIDATE $? "installing mysql"
 
+mysql -h mysql.join-devops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+
+VALIDATE $? "loading countries"
+
 systemctl restart shipping &>>$LOGFILE
 
 VALIDATE $? "restart shipping"
