@@ -29,31 +29,59 @@ VALIDATE(){
    fi 
 }
 
-yum install maven -y
+yum install maven -y &>>$LOGFILE
 
-useradd roboshop
+VALIDATE $? "installing maven"
 
-mkdir /app
+useradd roboshop &>>$LOGFILE
 
-curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
+VALIDATE $? "user added"
 
-cd /app
+mkdir /app &>>$LOGFILE
 
-unzip -o /tmp/shipping.zip
+VALIDATE $? "created directory"
 
-mvn clean package
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip &>>$LOGFILE
 
-mv target/shipping-1.0.jar shipping.jar
+VALIDATE $? "installing zip"
 
-systemctl daemon-reload
+cd /app &>>$LOGFILE
 
-systemctl enable shipping 
+VALIDATE $? "change dir"
 
-systemctl start shipping
+unzip -o /tmp/shipping.zip &>>$LOGFILE
 
-yum install mysql -y 
+VALIDATE $? "unzip dir"
 
-mysql -h mysql.join-devops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+mvn clean package &>>$LOGFILE
 
-systemctl restart shipping
+VALIDATE $? "clean package"
+
+mv target/shipping-1.0.jar shipping.jar &>>$LOGFILE
+
+VALIDATE $? "moving jar file"
+
+systemctl daemon-reload &>>$LOGFILE
+
+VALIDATE $? "reload"
+
+systemctl enable shipping &>>$LOGFILE
+
+VALIDATE $? "enabling shipping"
+
+systemctl start shipping &>>$LOGFILE
+
+VALIDATE $? "start shipping"
+
+yum install mysql -y  &>>$LOGFILE
+
+VALIDATE $? "installing mysql"
+
+mysql -h mysql.join-devops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>$LOGFILE
+
+VALIDATE $? "root pswd"
+
+systemctl restart shipping &>>$LOGFILE
+
+VALIDATE $? "restart shipping"
 
